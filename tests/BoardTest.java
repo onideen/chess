@@ -12,5 +12,4 @@ public class BoardTest {
 		assertNull(board.getPieceAt(4,4));
 	}
 	
-	
 }
