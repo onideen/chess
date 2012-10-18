@@ -8,7 +8,7 @@ public class Board {
 	public Board() {
 		initBoard();
 	}
-	
+
 	private void initBoard() {
 		board = new Piece[BOARD_SIZE][BOARD_SIZE];
 		
