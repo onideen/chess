@@ -8,7 +8,7 @@ public class Board {
 	public Board() {
 		initBoard();
 	}
-	
+
 	private void initBoard() {
 		board = new Piece[BOARD_SIZE][BOARD_SIZE];
 		arrangePieces(Color.WHITE);
@@ -34,6 +34,10 @@ public class Board {
 
 	public boolean isEmpty(int x, int y){
 		return board[x][y] == null;
+	}
+	
+	private void init(){
+		
 	}
 	
 	public Color getPieceColor(int x, int y) {
