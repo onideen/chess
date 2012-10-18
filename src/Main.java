@@ -5,8 +5,8 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
-		System.out.println(getIndexes("E2"));
+		int[] t =getIndexes("E2");
+		System.out.println(t[0]+""+t[1]);
 
 	}
 	
