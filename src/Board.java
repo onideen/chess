@@ -9,6 +9,10 @@ public class Board {
 		return board[x][y] == null;
 	}
 	
+	private void init(){
+		
+	}
+	
 	public Color getPieceColor(int x, int y) {
 		if ( ! isOnBoard(x, y)) return null;
 		else return board[x][y].getColor();
