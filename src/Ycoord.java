@@ -1,5 +1,5 @@
 
-//enums må starte på
+//enums må starte på bokstav
 public enum Ycoord {
 	Y1 (0),
 	Y2 (1),
