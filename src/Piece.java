@@ -17,6 +17,10 @@ public abstract class Piece {
 		return color;
 	}
 	
+	public boolean isEmptyOrOpositeColor(int endX, int endY) {
+		return board.isEmpty(endX, endY) || board.getPieceColor(endX, endY) != color; 
+	}
+	
 	public abstract boolean isValidMove(int startX, int startY, int endX, int endY);
 	
 	
