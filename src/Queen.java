@@ -1,18 +1,13 @@
 
-public class Queen extends Piece {
+public class Queen extends AbstractPiece {
 
-	public Queen(Board board, Color color) {
-		super(board, color);
+	public Queen(PieceColor color) {
+		super(color);
 	}
 
 	@Override
-	public boolean isValidMove(int startX, int startY, int endX, int endY) {
-		return false;
+	public boolean canMove(String from, String to, Board board) {
+		return (Board.isDiagonal(from, to) || Board.isStraight(from, to)) && ( ! board.isOccupiedBetween(from, to));
 	}
-	
-	@Override
-	public String toString() {
-		if (getColor() == Color.WHITE) return "Q";
-		else return "q";
-	}
+
 }
