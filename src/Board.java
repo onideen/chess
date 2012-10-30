@@ -1,6 +1,6 @@
 public class Board {
 
-	private final int BOARD_SIZE = 8;
+	private final static int BOARD_SIZE = 8;
 
 	private AbstractPiece[][] pieces;
 
@@ -62,6 +62,14 @@ public class Board {
 		return getColumnIndex(to) - getColumnIndex(from);
 	}
 
+	public static void validateBoardPosition(String position) {
+		
+		int column = getColumnIndex(position);
+		int row = getRowIndex(position);
+		
+		if (column < 0 || column >= BOARD_SIZE || row < 0 || row >= BOARD_SIZE ) throw new IllegalBoardPosition(position);
+	}
+	
 	@Override
 	public String toString() {
 
