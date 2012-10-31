@@ -70,6 +70,19 @@ public class Board {
 		if (column < 0 || column >= BOARD_SIZE || row < 0 || row >= BOARD_SIZE ) throw new IllegalBoardPosition(position);
 	}
 	
+	public boolean isLegalMove(PieceColor pieceColor, String from, String to) {
+		try {
+			validateBoardPosition(from);
+			validateBoardPosition(to);
+		} catch (IllegalBoardPosition e) { return false;}
+		
+		Piece myPiece = getPiece(from);
+		Piece toPiece = getPiece(to);
+		if(myPiece == null || myPiece.getPieceColor() != pieceColor ) return false;
+		
+		return (toPiece != null && toPiece.getPieceColor() != pieceColor) ? myPiece.canTake(from, to, this) : toPiece == null && myPiece.canMove(from, to, this);
+	}
+	
 	@Override
 	public String toString() {
 
