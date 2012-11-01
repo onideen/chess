@@ -1,5 +1,7 @@
 *.class
 test/
+.project
+.classpath
 
 # Package Files #
 *.jar
