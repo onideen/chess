@@ -2,20 +2,20 @@ public class Board {
 
 	private final static int BOARD_SIZE = 8;
 
-	private AbstractPiece[][] pieces;
+	private Piece[][] pieces;
 
 	public Board() {
 	}
 
-	public AbstractPiece getPiece(String position) {
+	public Piece getPiece(String position) {
 		return getPiece(getColumnIndex(position), getRowIndex(position));
 	}
 
-	private AbstractPiece getPiece(int column, int row) {
+	private Piece getPiece(int column, int row) {
 		return pieces[row][column];
 	}
 
-	public void setPiece(String position, AbstractPiece piece) {
+	public void setPiece(String position, Piece piece) {
 		pieces[getRowIndex(position)][getColumnIndex(position)] = piece;
 	}
 
@@ -41,8 +41,8 @@ public class Board {
 		int fromRow = getRowIndex(from);
 		int toColumn = getColumnIndex(to);
 		int toRow = getRowIndex(to);
-		int dColumn = (fromColumn == toColumn ? 0 : (toColumn - fromColumn) 
-						/ Math.abs(toColumn - fromColumn));
+		int dColumn = (fromColumn == toColumn ? 0 : (toColumn - fromColumn)
+				/ Math.abs(toColumn - fromColumn));
 		int dRow = (fromRow == toRow ? 0 : (toRow - fromRow)
 				/ Math.abs(toRow - fromRow));
 		for (int column = fromColumn + dColumn, row = fromRow + dRow; column != toColumn
@@ -63,26 +63,44 @@ public class Board {
 	}
 
 	public static void validateBoardPosition(String position) {
-		
+
 		int column = getColumnIndex(position);
 		int row = getRowIndex(position);
-		
-		if (column < 0 || column >= BOARD_SIZE || row < 0 || row >= BOARD_SIZE ) throw new IllegalBoardPosition(position);
+
+		if (column < 0 || column >= BOARD_SIZE || row < 0 || row >= BOARD_SIZE)
+			throw new IllegalBoardPosition(position);
 	}
-	
+
 	public boolean isLegalMove(PieceColor pieceColor, String from, String to) {
 		try {
 			validateBoardPosition(from);
 			validateBoardPosition(to);
-		} catch (IllegalBoardPosition e) { return false;}
-		
+		} catch (IllegalBoardPosition e) {
+			return false;
+		}
+
 		Piece myPiece = getPiece(from);
 		Piece toPiece = getPiece(to);
-		if(myPiece == null || myPiece.getPieceColor() != pieceColor ) return false;
-		
-		return (toPiece != null && toPiece.getPieceColor() != pieceColor) ? myPiece.canTake(from, to, this) : toPiece == null && myPiece.canMove(from, to, this);
+		if (myPiece == null || myPiece.getPieceColor() != pieceColor)
+			return false;
+
+		return (toPiece != null && toPiece.getPieceColor() != pieceColor) ? myPiece
+				.canTake(from, to, this) : toPiece == null
+				&& myPiece.canMove(from, to, this);
 	}
-	
+
+	public boolean movePiece(PieceColor pieceColor, String from, String to) {
+		Piece piece = getPiece(from);
+		if (isLegalMove(pieceColor, from, to)) {
+			setPiece(from, null);
+			setPiece(to, piece);
+			return true;
+		} else {
+			System.out.println("Illegal move");
+			return false;
+		}
+	}
+
 	@Override
 	public String toString() {
 
@@ -104,6 +122,35 @@ public class Board {
 
 	public static void main(String[] args) {
 		System.out.println(new Board());
+	}
+
+	public boolean isCheck(PieceColor kingColor) {
+		String kingPosition = findKing(kingColor);
+		
+		BoardIterator bi = new BoardIterator();
+
+		PieceColor otherColor = kingColor.getOtherColor();
+		while (bi.hasNext()) {
+			String position = bi.next();
+			Piece piece = getPiece(position);
+			if (piece != null && piece.getPieceColor() == otherColor && piece.canTake(position, kingPosition, this)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public String findKing(PieceColor kingColor) {
+		BoardIterator bi = new BoardIterator();
+		
+		while(bi.hasNext()){
+			String position = bi.next();
+			Piece piece= getPiece(position);
+			if (piece instanceof King && piece.getPieceColor() == kingColor) {
+				return position;
+			}
+		}
+		return null;
 	}
 
 }
