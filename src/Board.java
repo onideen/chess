@@ -10,10 +10,21 @@ public class Board {
 		
 	}
 
-	private void placePieces() {
-		setPiece("a1", new Rook(PieceColor.WHITE));
+	private void placePieces(PieceColor pieceColor) {
 		
+		int mainRow = pieceColor == PieceColor.WHITE ? 1 : 8;
+		int pawnRow = pieceColor == PieceColor.WHITE ? 2 : 7;
 		
+		setPiece("a" + mainRow, new Rook(pieceColor));
+		setPiece("b" + mainRow, new Knight(pieceColor));
+		setPiece("c" + mainRow, new Bishop(pieceColor));
+		setPiece("d" + mainRow, new Queen(pieceColor));
+		setPiece("e" + mainRow, new King(pieceColor));
+		setPiece("f" + mainRow, new Bishop(pieceColor));
+		setPiece("g" + mainRow, new Knight(pieceColor));
+		setPiece("h" + mainRow, new Rook(pieceColor));
+		
+		setPiece("a" + pawnRow, new Pawn(pieceColor));
 		
 	}
 
