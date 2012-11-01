@@ -5,6 +5,16 @@ public class Board {
 	private Piece[][] pieces;
 
 	public Board() {
+		
+		placePieces();
+		
+	}
+
+	private void placePieces() {
+		
+		
+		
+		
 	}
 
 	public Piece getPiece(String position) {
