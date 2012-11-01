@@ -11,7 +11,7 @@ public class Board {
 	}
 
 	private void placePieces() {
-		
+		setPiece("a1", new Rook(PieceColor.WHITE));
 		
 		
 		
@@ -29,11 +29,11 @@ public class Board {
 		pieces[getRowIndex(position)][getColumnIndex(position)] = piece;
 	}
 
-	private static int getColumnIndex(String position) {
+	public static int getColumnIndex(String position) {
 		return position.charAt(0) - 'a';
 	}
 
-	private static int getRowIndex(String position) {
+	public static int getRowIndex(String position) {
 		return position.charAt(1) - '1';
 	}
 
@@ -64,11 +64,11 @@ public class Board {
 		return false;
 	}
 
-	private static int getRowDistance(String from, String to) {
+	public static int getRowDistance(String from, String to) {
 		return getRowIndex(to) - getRowIndex(from);
 	}
 
-	private static int getColumnDistance(String from, String to) {
+	public static int getColumnDistance(String from, String to) {
 		return getColumnIndex(to) - getColumnIndex(from);
 	}
 
