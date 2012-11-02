@@ -5,8 +5,9 @@ public class Board {
 	private Piece[][] pieces;
 
 	public Board() {
-		
-		placePieces();
+		pieces = new Piece[BOARD_SIZE][BOARD_SIZE];
+		placePieces(PieceColor.WHITE);
+		placePieces(PieceColor.BLACK);
 		
 	}
 
@@ -25,6 +26,13 @@ public class Board {
 		setPiece("h" + mainRow, new Rook(pieceColor));
 		
 		setPiece("a" + pawnRow, new Pawn(pieceColor));
+		setPiece("b" + pawnRow, new Pawn(pieceColor));
+		setPiece("c" + pawnRow, new Pawn(pieceColor));
+		setPiece("d" + pawnRow, new Pawn(pieceColor));
+		setPiece("e" + pawnRow, new Pawn(pieceColor));
+		setPiece("f" + pawnRow, new Pawn(pieceColor));
+		setPiece("g" + pawnRow, new Pawn(pieceColor));
+		setPiece("h" + pawnRow, new Pawn(pieceColor));
 		
 	}
 
@@ -33,11 +41,11 @@ public class Board {
 	}
 
 	private Piece getPiece(int column, int row) {
-		return pieces[row][column];
+		return pieces[column][row];
 	}
 
 	public void setPiece(String position, Piece piece) {
-		pieces[getRowIndex(position)][getColumnIndex(position)] = piece;
+		pieces[getColumnIndex(position)][getRowIndex(position)] = piece;
 	}
 
 	public static int getColumnIndex(String position) {
@@ -141,9 +149,6 @@ public class Board {
 		return board.toString();
 	}
 
-	public static void main(String[] args) {
-		System.out.println(new Board());
-	}
 
 	public boolean isCheck(PieceColor kingColor) {
 		String kingPosition = findKing(kingColor);
