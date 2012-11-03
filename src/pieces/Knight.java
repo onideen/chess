@@ -1,3 +1,7 @@
+package pieces;
+import game.Board;
+import game.PieceColor;
+
 
 public class Knight extends AbstractPiece {
 
@@ -8,6 +12,11 @@ public class Knight extends AbstractPiece {
 	@Override
 	public boolean canMove(String from, String to, Board board) {
 		return Math.abs(Board.getColumnDistance(from, to) * Board.getRowDistance(from, to)) == 2;
-			}
+	}
 
+	@Override
+	public String toString() {
+		return getPieceColor() == PieceColor.WHITE ? "T" : "t";
+	}	
+	
 }

@@ -1,3 +1,7 @@
+package pieces;
+import game.Board;
+import game.PieceColor;
+
 
 public abstract class AbstractPiece implements Piece {
 	

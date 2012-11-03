@@ -1,4 +1,10 @@
+package pieces;
+
+import game.Board;
+import game.PieceColor;
+
 import java.math.*;
+
 
 public class King extends AbstractPiece {
 
@@ -14,4 +20,10 @@ public class King extends AbstractPiece {
 				&&Math.abs(Board.getRowDistance(from, to))<=1 );
 	}
 
+	@Override
+	public String toString() {
+		return getPieceColor() == PieceColor.WHITE ? "K" : "k";
+	}
+	
 }
+

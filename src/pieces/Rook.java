@@ -1,3 +1,7 @@
+package pieces;
+import game.Board;
+import game.PieceColor;
+
 
 public class Rook extends AbstractPiece {
 
@@ -10,5 +14,8 @@ public class Rook extends AbstractPiece {
 		return Board.isStraight(from, to) && (! board.isOccupiedBetween(from, to));
 	}
 
-	
+	@Override
+	public String toString() {
+		return getPieceColor() == PieceColor.WHITE ? "R" : "r";
+	}
 }

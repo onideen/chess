@@ -1,3 +1,5 @@
+package game;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,6 +17,7 @@ public class Game {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
 		do {
+			System.out.println(board);
 			System.out.println(pieceColor + "'s turn: ");
 			String line = null;
 			try {

@@ -1,3 +1,7 @@
+package pieces;
+import game.Board;
+import game.PieceColor;
+
 
 public interface Piece {
 	public PieceColor getPieceColor();

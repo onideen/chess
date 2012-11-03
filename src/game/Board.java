@@ -1,3 +1,12 @@
+package game;
+import pieces.Bishop;
+import pieces.King;
+import pieces.Knight;
+import pieces.Pawn;
+import pieces.Piece;
+import pieces.Queen;
+import pieces.Rook;
+
 public class Board {
 
 	private final static int BOARD_SIZE = 8;

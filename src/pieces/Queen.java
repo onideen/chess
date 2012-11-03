@@ -1,3 +1,7 @@
+package pieces;
+import game.Board;
+import game.PieceColor;
+
 
 public class Queen extends AbstractPiece {
 
@@ -10,4 +14,9 @@ public class Queen extends AbstractPiece {
 		return (Board.isDiagonal(from, to) || Board.isStraight(from, to)) && ( ! board.isOccupiedBetween(from, to));
 	}
 
+	
+	@Override
+	public String toString() {
+		return getPieceColor() == PieceColor.WHITE ? "Q" : "q";
+	}	
 }

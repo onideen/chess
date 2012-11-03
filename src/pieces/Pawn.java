@@ -1,3 +1,7 @@
+package pieces;
+import game.Board;
+import game.PieceColor;
+
 public class Pawn extends AbstractPiece {
 
 	public Pawn(PieceColor color){
@@ -37,4 +41,9 @@ public class Pawn extends AbstractPiece {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return getPieceColor() == PieceColor.WHITE ? "P" : "p";
+	}
+	
 }
