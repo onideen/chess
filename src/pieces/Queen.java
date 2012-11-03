@@ -16,17 +16,6 @@ public class Queen extends AbstractPiece {
 	
 	@Override
 	public String toString() {
-		if (this.getPieceColor()==PieceColor.BLACK) {
-			return "Q";
-		}
-		else {
-			return "q";
-		}
-	}
-
-	
-	@Override
-	public String toString() {
 		return getPieceColor() == PieceColor.WHITE ? "Q" : "q";
 	}	
 }
