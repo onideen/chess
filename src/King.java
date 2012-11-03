@@ -6,7 +6,15 @@ public class King extends AbstractPiece {
 		super(color);
 	}
 	
-	
+	@Override
+	public String toString() {
+		if (this.getPieceColor()==PieceColor.BLACK) {
+			return "K";
+		}
+		else {
+			return "k";
+		}
+	}
 	@Override
 	public boolean canMove(String from, String to, Board board) {
 		return (Board.isDiagonal(from, to) || Board.isStraight(from, to))

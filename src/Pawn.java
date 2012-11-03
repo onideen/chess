@@ -5,6 +5,16 @@ public class Pawn extends AbstractPiece {
 	}
 	
 	@Override
+	public String toString() {
+		if (this.getPieceColor()==PieceColor.BLACK) {
+			return "P";
+		}
+		else {
+			return "p";
+		}
+	}
+	
+	@Override
 	public boolean canMove(String from, String to, Board board) {
 		int rd =Board.getRowDistance(from, to);
 		int cd =Board.getColumnDistance(from, to);
