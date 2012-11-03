@@ -73,7 +73,7 @@ public class Board {
 	}
 
 	public static boolean isDiagonal(String from, String to) {
-		return getColumnDistance(from, to) == getRowDistance(from, to);
+		return Math.abs(getColumnDistance(from, to)) == Math.abs(getRowDistance(from, to));
 	}
 
 	public boolean isOccupiedBetween(String from, String to) {
