@@ -13,6 +13,16 @@ public class Queen extends AbstractPiece {
 	public boolean canMove(String from, String to, Board board) {
 		return (Board.isDiagonal(from, to) || Board.isStraight(from, to)) && ( ! board.isOccupiedBetween(from, to));
 	}
+	
+	@Override
+	public String toString() {
+		if (this.getPieceColor()==PieceColor.BLACK) {
+			return "Q";
+		}
+		else {
+			return "q";
+		}
+	}
 
 	
 	@Override

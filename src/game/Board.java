@@ -58,6 +58,8 @@ public class Board {
 	}
 
 	public static int getColumnIndex(String position) {
+		System.out.println("stringpos: "+position);
+		System.out.println(position.charAt(0) - 'a');
 		return position.charAt(0) - 'a';
 	}
 
@@ -179,8 +181,11 @@ public class Board {
 		BoardIterator bi = new BoardIterator();
 		
 		while(bi.hasNext()){
+
 			String position = bi.next();
+			//TODO bi.next() gir nullverdi -> getPiece(position) gir nullpointerException
 			Piece piece= getPiece(position);
+
 			if (piece instanceof King && piece.getPieceColor() == kingColor) {
 				return position;
 			}
