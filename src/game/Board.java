@@ -1,4 +1,5 @@
 package game;
+import junit.framework.Assert;
 import pieces.Bishop;
 import pieces.King;
 import pieces.Knight;
@@ -6,17 +7,20 @@ import pieces.Pawn;
 import pieces.Piece;
 import pieces.Queen;
 import pieces.Rook;
+import randoop.CheckRep;
+import junit.framework.Assert;
 
 public class Board {
 
 	private final static int BOARD_SIZE = 8;
-
+	private int taken;
 	private Piece[][] pieces;
 
 	public Board() {
 		pieces = new Piece[BOARD_SIZE][BOARD_SIZE];
 		placePieces(PieceColor.WHITE);
 		placePieces(PieceColor.BLACK);
+		taken=0;
 		
 	}
 
@@ -42,6 +46,29 @@ public class Board {
 		setPiece("f" + pawnRow, new Pawn(pieceColor));
 		setPiece("g" + pawnRow, new Pawn(pieceColor));
 		setPiece("h" + pawnRow, new Pawn(pieceColor));
+		
+	}
+	
+	
+	
+	@CheckRep
+	public boolean numberOfPiecesCheck(){
+		if (this.nofPiecesOnBoard()+taken!=32) {
+			return false;
+		}
+		return true;
+	}
+	
+	private int nofPiecesOnBoard(){
+		int count = 0;
+		for (int i = 0; i < pieces.length; i++) {
+			for (int j = 0; j < pieces[i].length; j++) {
+				if (!pieces[i][j].equals(null)) {
+					count++;
+				}
+			}
+		}
+		return count;
 		
 	}
 
@@ -132,8 +159,14 @@ public class Board {
 	public boolean movePiece(PieceColor pieceColor, String from, String to) {
 		Piece piece = getPiece(from);
 		if (isLegalMove(pieceColor, from, to)) {
+			if (!getPiece(to).equals(null)) {
+				taken++;
+			}
+			
 			setPiece(from, null);
 			setPiece(to, piece);
+			Assert.assertTrue(piece.equals(this.getPiece(to)));
+			Assert.assertTrue(this.getPiece(from).equals(null));
 			return true;
 		} else {
 			System.out.println("Illegal move");
